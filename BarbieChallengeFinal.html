@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbie 💗</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+</head>
+
+<style>
+
+    body {
+      display: flex;
+      padding: 0 35px;
+      align-items: center;
+      justify-items: center;
+      min-height: 100vh;
+      background: linear-gradient(68.6deg, rgb(252, 165, 241) 1.8%, rgb(181, 255, 255) 100.5%);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 30px 60px;
+      background: #301934;
+      border-radius: 10px;
+    }
+
+     .logo {
+      max-width: 300px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    h1 {
+        color: aqua;
+        text-align: center;
+    }
+
+     .trailer {
+      display: flex;
+  justify-content: center;
+  
+    }
+    .wrapper {
+      max-width: 1200px;
+      position: relative;
+      padding-bottom: ;
+    }
+
+    .wrapper i {
+      top: 50%;
+      background: ivory;
+      height: 46px;
+      width: 46px;
+      position: absolute;
+      text-align: center;
+      line-height: 46px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transform: translateY(-50%);
+    }
+
+    .wrapper i:first-child {
+      left: -23px;
+    }
+
+    .wrapper i:last-child {
+      right: -23px;
+    }
+    .wrapper .carousel {
+      font-size: 0px;
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      scroll-behavior: smooth;
+    }
+
+    .carousel.dragging {
+      cursor: grab;
+      scroll-behavior: auto;
+    }
+
+    .carousel.dragging img {
+      pointer-events: none;
+    }
+
+    .carousel img {
+      height: 340px;
+      object-fit: cover;
+      margin-left: 14px;
+      width: calc(100% / 3);
+      border-radius: 10px;
+    }
+
+    .carousel img: :first-child {
+      margin-left: 0px;
+    }
+
+    @media screen and (max-width: 900px) {
+      .carousel img {
+        width: calc(100% / 2);
+      }
+    }
+    @media screen and (max-width: 550px) {
+      .carousel img {
+        width: 100%;
+      }
+    }
+
+      .selfie-generator {
+      display: block;
+      font-size: larger;
+      margin: 20px auto;
+      padding: 30px 200px;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+      background-color: #ec46a1;
+      transition: all 200ms ease;
+    }
+    
+
+
+</style>
+<body>
+    <div class="container">
+
+         <img
+        src=https://s3.amazonaws.com/shecodesio-production/uploads/files/000/096/065/original/barbie-media-png-logo-18.png?1694048534
+      alt="Barbie Logo in pink" class="logo" />
+
+        <h1> Watch the Movie Trailer</h1>
+
+        <div class="trailer">
+        <iframe width="940" height="529" src="https://www.youtube.com/embed/pBk4NYhWNMM" title="Barbie | Main Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      
+      <div class="wrapper">
+      <i id="left" class="fa-solid fa-angle-left"></i>
+      <div class="carousel">
+        <img
+          src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/096/803/original/barbie-movie-posters-4.jpg?1694533588"
+          alt="img1"
+        />
+        <img
+          src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/096/804/original/barbie-movie-posters-01.jpg?1694533593"
+          alt="img2"
+        />
+        <img
+          src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/096/805/original/barbie-movie-posters-12.jpg?1694533604"
+          alt="img3"
+        />
+        <img
+          src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/096/806/original/barbie-movie-posters-1.jpg?1694533611"
+          alt="img4"
+        />
+        <img
+          src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/096/820/original/barbie-movie-posters-8.jpg?1694545156"
+          alt="img5"
+        />
+        <img
+          src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/096/807/original/barbie-movie-posters-15.jpg?1694533624"
+          alt="img6"
+        />
+      </div>
+      <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+
+    <button class="selfie-generator">
+        <a href="https://www.barbieselfie.ai/" target="_blank">
+          Barbie Selfie Generator 📸
+        </a>
+
+
+
+
+
+      <script>
+      const carousel = document.querySelector(".carousel"),
+        firstImg = carousel.querySelectorAll("img")[0];
+      arrowIcons = document.querySelectorAll(".wrapper i");
+
+      let isDragStart = false,
+        prevPageX,
+        prevScrollLeft;
+
+      let firstImgWidth = (firstImg.clientWidth = 14);
+
+      arrowIcons.forEach((icon) => {
+        icon.addEventListener("click", () => {
+          carousel.scrollLeft +=
+            icon.id == "left" ? -firstImgWidth : firstImgWidth;
+        });
+      });
+
+      const dragStart = (e) => {
+        isDragStart = true;
+        prevPageX = e.pageX;
+        prevScrollLeft = carousel.scrollLeft;
+      };
+
+      const dragging = (e) => {
+        if (!isDragStart) return;
+        e.preventDefault();
+        carousel.classList.add("dragging");
+        let positionDiff = e.pageX - prevPageX;
+        carousel.scrollLeft = prevScrollLeft - positionDiff;
+      };
+
+      const dragStop = () => {
+        isDragStart = false;
+        carousel.classList.remove("dragging");
+      };
+
+      carousel.addEventListener("mousedown", dragStart);
+      carousel.addEventListener("mousemove", dragging);
+      carousel.addEventListener("mouseup", dragStop);
+    </script>
+</body>
+</html>
